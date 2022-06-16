@@ -6,11 +6,16 @@ RUN rm -rf /var/lib/apt/lists/*
 ENV DISPLAY=:99
 RUN winecfg
 
+RUN mkdir /scripts
+COPY install.sh /scripts/
+COPY entrypoint.sh /scripts/
+RUN chmod +x /scripts/install.sh
+RUN chmod +x /scripts/entrypoint.sh
+RUN chown -R steam /scripts
+
 RUN mkdir /app
-COPY install.sh /app/
-COPY entrypoint.sh /app/
-RUN chmod +x /app/install.sh
-RUN chmod +x /app/entrypoint.sh
+RUN ln -s /scripts/install.sh /app/install.sh
+RUN ln -s /scripts/entrypoint.sh /app/entrypoint.sh
 RUN chown -R steam /app
 
 USER steam
