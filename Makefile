@@ -1,6 +1,6 @@
 VERSION := `git describe --tags`
 IMAGE_NAME := steamcmd-wine
-IMAGE_REGISTRY ?= razzquez
+IMAGE_REGISTRY ?= ghcr.io/razzie
 FULL_IMAGE_NAME := $(IMAGE_REGISTRY)/$(IMAGE_NAME):$(VERSION)
 
 .PHONY: docker-build-local
